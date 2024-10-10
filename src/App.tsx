@@ -162,7 +162,7 @@ function App() {
       </div>
       <div className="content">
         <div className='sorteio'>
-          <h1 className="text-4xl font-bold mb-4">SORTEIO DE BRINDE</h1>
+          <h1 className="text-4xl font-bold mb-4">SORTEIO</h1>
 
           <div className="numero_sorteado">
             <h1 className={`text-5xl font-bold ${isSorteando ? 'animate-pulse' : ''}`}>
@@ -191,7 +191,7 @@ function App() {
 
             {numerosSorteados.map((item) => (
               <li key={item.numero} style={{ display: "flex", width: "100%", fontSize: "4rem", alignItems: "center", gap: "0.5rem", justifyContent: "start" }}>
-                <strong style={{ fontSize: "4rem" }}>{item.numero} - {item.nome?.toUpperCase()} </strong>
+                <strong style={{ fontSize: "4rem" }}>{item.numero} - {item.nome?.toUpperCase() } </strong>
                 <span> {item.telefone}</span>
               </li>
             ))}
