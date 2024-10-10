@@ -95,27 +95,27 @@ function App() {
         const workbook = XLSX.read(data, { type: 'array' });
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
-        
+
         // Explicitamente definindo o tipo de `jsonData`
         const jsonData: any[][] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-  
+
         // Encontrar os índices das colunas "Nome" e "Telefone"
         const headerRow = jsonData[0] as string[];
         const nomeColumnIndex = headerRow.indexOf('Nome');
         const telefoneColumnIndex = headerRow.indexOf('Telefone');
-  
+
         if (nomeColumnIndex === -1 || telefoneColumnIndex === -1) {
           alert('Colunas "Nome" e/ou "Telefone" não encontradas no arquivo.');
           return;
         }
-  
+
         // Mapear os dados com índices, especificando o tipo correto
         const dadosComIndices = jsonData.slice(1).map((row: any[], index: number) => ({
           numero: index + 1,
           nome: row[nomeColumnIndex] || 'Nome não disponível',
           telefone: row[telefoneColumnIndex] || 'Telefone não disponível',
         }));
-  
+
         console.log("Dados lidos do Excel com índices:", dadosComIndices);
         setDadosExcel(dadosComIndices);
       };
@@ -162,7 +162,7 @@ function App() {
       </div>
       <div className="content">
         <div className='sorteio'>
-          <h1 className="text-4xl font-bold mb-4">SORTEIO DE NÚMEROS</h1>
+          <h1 className="text-4xl font-bold mb-4">SORTEIO DE BRINDE</h1>
 
           <div className="numero_sorteado">
             <h1 className={`text-5xl font-bold ${isSorteando ? 'animate-pulse' : ''}`}>
@@ -187,11 +187,12 @@ function App() {
 
         {numerosSorteados.length > 0 && (
           <div className="content_sorteados">
-            <h3 >NÚMEROS SORTEADOS</h3>
+            <h3 >NÚMERO SORTEADO</h3>
 
             {numerosSorteados.map((item) => (
-              <li key={item.numero} style={{display:"flex", width:"100%", alignItems:"center", gap:"0.5rem", justifyContent:"start"}}>
-                <strong style={{fontSize:"1.5rem"}}>{item.numero}</strong> - {item.nome} - {item.telefone}
+              <li key={item.numero} style={{ display: "flex", width: "100%", fontSize: "4rem", alignItems: "center", gap: "0.5rem", justifyContent: "start" }}>
+                <strong style={{ fontSize: "4rem" }}>{item.numero} - {item.nome?.toUpperCase()} </strong>
+                <span> {item.telefone}</span>
               </li>
             ))}
 
